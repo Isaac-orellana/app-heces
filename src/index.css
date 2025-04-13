@@ -1,0 +1,488 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fredoka:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+body {
+  margin: 0;
+  font-family: 'Fredoka', 'Comic Sans MS', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #FFF9E5, #FFE5E5) !important;
+  min-height: 100vh;
+}
+
+/* Calendar responsive styles */
+.react-calendar {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: none !important;
+  font-family: 'Fredoka', 'Comic Sans MS', sans-serif !important;
+  border-radius: clamp(16px, 4vw, 30px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  padding: clamp(12px, 3vw, 24px) !important;
+  border: 4px solid #FF8C00 !important;
+  margin: 0 auto !important;
+}
+
+.react-calendar__month-view__weekdays {
+  font-weight: 700 !important;
+  font-size: clamp(0.9em, 2.5vw, 1.2em) !important;
+  color: #FFA500 !important;
+  margin-bottom: clamp(8px, 2vw, 16px) !important;
+  font-family: 'Fredoka One', cursive !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15) !important;
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  justify-items: center !important;
+  text-align: center !important;
+  padding: 0 !important;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.5em 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 2px !important;
+  padding: 2px !important;
+}
+
+.react-calendar__tile {
+  padding: clamp(1em, 4vw, 3em) 0.5em !important;
+  min-height: clamp(60px, 15vw, 120px) !important;
+  font-size: clamp(0.8em, 2.5vw, 1.2em) !important;
+  position: relative !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: clamp(10px, 2vw, 20px) !important;
+  margin: 2px !important;
+  font-family: 'Fredoka One', cursive !important;
+  color: #FF8C00 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15) !important;
+  background: linear-gradient(135deg, #FFF9E5, #FFE5E5) !important;
+  aspect-ratio: 1 !important;
+  width: 100% !important;
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day--neighboringMonth {
+  color: #FFB366 !important;
+  opacity: 0.5 !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.react-calendar__tile--now {
+  background: rgba(255, 140, 0, 0.15) !important;
+  border: 2px solid #FF8C00 !important;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus,
+.react-calendar__tile--active {
+  background: rgba(255, 140, 0, 0.25) !important;
+  color: #FF8C00 !important;
+  transform: scale(1.05) !important;
+  text-shadow: none !important;
+}
+
+/* Calendar date number styles */
+.react-calendar__tile abbr {
+  position: absolute !important;
+  top: 4px !important;
+  left: 4px !important;
+  z-index: 2 !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  padding: 2px 4px !important;
+  border-radius: 4px !important;
+  font-size: 0.85em !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  min-width: 1.5em !important;
+  text-align: center !important;
+  border: 1px solid rgba(255, 140, 0, 0.3) !important;
+}
+
+.react-calendar__navigation {
+  margin-bottom: clamp(16px, 4vw, 24px) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.react-calendar__navigation button {
+  font-size: clamp(1em, 3vw, 1.4em) !important;
+  color: #FF8C00 !important;
+  font-weight: 700 !important;
+  font-family: 'Fredoka One', cursive !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15) !important;
+  padding: clamp(4px, 1vw, 8px) !important;
+  min-width: 44px !important;
+  background: none !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.react-calendar__navigation button:disabled {
+  opacity: 0.5 !important;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: rgba(255, 140, 0, 0.1) !important;
+  border-radius: 8px !important;
+  transform: scale(1.1) !important;
+}
+
+/* Calendar tile content styles */
+.calendar-tile-content {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 24px !important;
+  padding-bottom: 4px !important;
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+  border-radius: inherit !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  transition: all 0.3s ease !important;
+}
+
+.entries-grid {
+  display: grid !important;
+  width: 100% !important;
+  height: 100% !important;
+  gap: 2px !important;
+  padding: 2px !important;
+}
+
+.entries-count-1 {
+  grid-template-columns: 1fr !important;
+  grid-template-rows: 1fr !important;
+  padding: 4px !important;
+}
+
+.entries-count-2 {
+  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-rows: 1fr !important;
+  padding: 4px !important;
+}
+
+.entries-count-3 {
+  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-rows: auto 1fr !important;
+  padding: 2px !important;
+}
+
+.entries-count-4 {
+  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-rows: repeat(2, 1fr) !important;
+  padding: 2px !important;
+}
+
+.experience-frame {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 6px !important;
+  padding: 2px !important;
+  aspect-ratio: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+.experience-emoji {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  font-size: clamp(0.8em, 1.5vw, 1.2em) !important;
+  line-height: 1 !important;
+}
+
+.entries-count-1 .experience-emoji {
+  font-size: clamp(1.2em, 2vw, 1.5em) !important;
+}
+
+.entries-count-2 .experience-emoji {
+  font-size: clamp(1em, 1.8vw, 1.3em) !important;
+}
+
+.entries-count-3 .experience-emoji,
+.entries-count-4 .experience-emoji {
+  font-size: clamp(0.8em, 1.5vw, 1.1em) !important;
+}
+
+/* Experience-specific colors */
+.experience-excellent,
+.experience-good {
+  border: 2px solid #4CAF50 !important;
+  background-color: rgba(76, 175, 80, 0.1) !important;
+}
+
+.experience-difficult {
+  border: 2px solid #FFC107 !important;
+  background-color: rgba(255, 193, 7, 0.1) !important;
+}
+
+.experience-very_difficult {
+  border: 2px solid #FF5252 !important;
+  background-color: rgba(255, 82, 82, 0.1) !important;
+}
+
+/* Characteristics checkbox styles */
+.characteristic-label {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 4px !important;
+  border-radius: 15px !important;
+  transition: all 0.3s ease !important;
+  background: white !important;
+  border: 3px solid #FF8C00 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  min-height: 70px !important;
+  width: 100% !important;
+  gap: 4px !important;
+}
+
+.characteristic-label:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.characteristic-label.checked {
+  background: linear-gradient(135deg, #FF8C00, #FFA500) !important;
+  color: white !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+.characteristic-emoji {
+  font-size: 1.8em !important;
+  line-height: 1 !important;
+  transition: all 0.3s ease !important;
+  filter: grayscale(0.5) !important;
+  margin-bottom: 2px !important;
+}
+
+.characteristic-label.checked .characteristic-emoji {
+  filter: grayscale(0) !important;
+  transform: scale(1.1) !important;
+}
+
+.characteristic-text {
+  font-family: 'Fredoka', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  color: #666 !important;
+  transition: all 0.3s ease !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+.characteristic-label.checked .characteristic-text {
+  color: white !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Button styles */
+.fun-button {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: scale(1) !important;
+  border-radius: clamp(16px, 4vw, 25px) !important;
+  background: white !important;
+  border: 4px solid #FF8C00 !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+  min-height: clamp(60px, 15vw, 100px) !important;
+  font-family: 'Fredoka One', cursive !important;
+  padding: clamp(8px, 2vw, 16px) !important;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: auto !important;
+  min-height: 100px !important;
+}
+
+.fun-button:hover {
+  transform: scale(1.05) translateY(-5px) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
+  background: linear-gradient(135deg, #FF8C00, #FFA500) !important;
+  color: white !important;
+}
+
+.fun-button.selected {
+  background: linear-gradient(135deg, #FF8C00, #FFA500) !important;
+  color: white !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.color-button {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: clamp(16px, 4vw, 25px) !important;
+  min-height: clamp(60px, 15vw, 100px) !important;
+  font-family: 'Fredoka One', cursive !important;
+  border: 4px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+  font-size: clamp(0.7rem, 2vw, 0.9rem) !important;
+}
+
+.color-button:hover {
+  transform: scale(1.05) translateY(-5px) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Add new title styles */
+.app-title {
+  font-size: clamp(2rem, 5vw, 2.5rem) !important;
+  font-weight: 700 !important;
+  font-family: 'Fredoka One', cursive !important;
+  background: linear-gradient(135deg, #FF8C00, #FFA500) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem) !important;
+  text-align: center !important;
+  text-shadow: 4px 4px 0px rgba(255, 140, 0, 0.2) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 0 clamp(8px, 2vw, 16px) !important;
+  line-height: 1.2 !important;
+  position: relative !important;
+  animation: bounce 1s ease-in-out infinite alternate !important;
+}
+
+.app-title-icon {
+  font-size: 1.2em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transform: rotate(-10deg) !important;
+  animation: wiggle 1s ease-in-out infinite alternate !important;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes wiggle {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(10deg);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 640px) {
+  .react-calendar__tile {
+    padding: 0.8em 0.3em !important;
+  }
+  
+  .emoji-container {
+    font-size: 1em !important;
+  }
+  
+  .calendar-date {
+    font-size: 0.9em !important;
+  }
+  
+  .fun-button {
+    min-height: 50px !important;
+  }
+
+  .characteristic-label {
+    padding: 6px 4px !important;
+    min-height: 60px !important;
+  }
+
+  .characteristic-emoji {
+    font-size: 1.5em !important;
+  }
+
+  .characteristic-text {
+    font-size: 0.75rem !important;
+  }
+
+  .react-calendar__tile abbr {
+    font-size: 0.75em !important;
+    padding: 1px 3px !important;
+  }
+
+  .experience-emoji {
+    font-size: clamp(0.7em, 1.2vw, 0.9em) !important;
+  }
+
+  .entries-count-1 .experience-emoji {
+    font-size: clamp(0.9em, 1.5vw, 1.1em) !important;
+  }
+
+  .entries-count-2 .experience-emoji {
+    font-size: clamp(0.8em, 1.3vw, 1em) !important;
+  }
+
+  .entries-count-3 .experience-emoji,
+  .entries-count-4 .experience-emoji {
+    font-size: clamp(0.7em, 1.1vw, 0.9em) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    flex-direction: column !important;
+    gap: 0.2rem !important;
+  }
+  
+  .react-calendar__navigation button {
+    padding: 2px !important;
+  }
+  
+  .fun-paper {
+    padding: 12px !important;
+  }
+
+  .calendar-tile-content {
+    padding-top: 20px !important;
+  }
+
+  .entries-grid {
+    gap: 1px !important;
+    padding: 1px !important;
+  }
+
+  .experience-frame {
+    border-radius: 4px !important;
+  }
+}
