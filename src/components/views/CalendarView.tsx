@@ -1,7 +1,6 @@
 import React from 'react';
 import { Paper, Typography, Grid, Button, Box, Fade, useMediaQuery, useTheme } from '@mui/material';
-import Calendar from 'react-calendar';
-import type { Value } from 'react-calendar';
+import { Calendar, DateValue } from 'react-calendar';
 import { useStore } from '../../store';
 import 'react-calendar/dist/Calendar.css';
 
@@ -76,7 +75,7 @@ export default function CalendarView() {
     { value: 'very_difficult', emoji: '😖', description: '¡Qué sufrimiento!', color: '#FF5252' }
   ];
 
-  const handleDateClick = (value: Value) => {
+  const handleDateClick = (value: DateValue) => {
     if (value instanceof Date) {
       setSelectedDate(value);
       setShowOptions(true);
